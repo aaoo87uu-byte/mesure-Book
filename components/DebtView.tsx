@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Debt } from '../types.ts';
-import { storageService } from '../services/storageService.ts';
+import { Debt } from '../types';
+import { storageService } from '../services/storageService';
 
 const DebtView: React.FC = () => {
   const [debts, setDebts] = useState<Debt[]>([]);

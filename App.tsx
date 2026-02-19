@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
-import { ViewType } from './types.ts';
-import MeasurementView from './components/MeasurementView.tsx';
-import DebtView from './components/DebtView.tsx';
-import Navigation from './components/Navigation.tsx';
+import { ViewType } from './types';
+import MeasurementView from './components/MeasurementView';
+import DebtView from './components/DebtView';
+import Navigation from './components/Navigation';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewType>('measurements');

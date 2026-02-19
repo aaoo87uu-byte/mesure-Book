@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { Measurement } from '../types.ts';
-import { storageService } from '../services/storageService.ts';
-import { exportToWord } from '../services/exportService.ts';
+import { Measurement } from '../types';
+import { storageService } from '../services/storageService';
+import { exportToWord } from '../services/exportService';
 
 const MeasurementView: React.FC = () => {
   const [measurements, setMeasurements] = useState<Measurement[]>([]);
