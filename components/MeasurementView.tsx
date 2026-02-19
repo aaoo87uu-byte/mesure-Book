@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { Measurement } from '../types';
-import { storageService } from '../services/storageService';
-import { exportToWord } from '../services/exportService';
+import { Measurement } from '../types.ts';
+import { storageService } from '../services/storageService.ts';
+import { exportToWord } from '../services/exportService.ts';
 
 const MeasurementView: React.FC = () => {
   const [measurements, setMeasurements] = useState<Measurement[]>([]);
@@ -74,7 +74,7 @@ const MeasurementView: React.FC = () => {
           <input
             type="text"
             placeholder="بحث بالاسم..."
-            className="w-full pr-10 p-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all text-gray-900"
+            className="w-full pr-10 p-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all text-black font-medium"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -93,8 +93,8 @@ const MeasurementView: React.FC = () => {
       {showForm && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b sticky top-0 bg-white z-10 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-800">{editingId ? 'تعديل قياس' : 'إضافة قياس جديد'}</h2>
+            <div className="p-6 border-b sticky top-0 bg-white z-10 flex justify-between items-center text-black">
+              <h2 className="text-xl font-bold">{editingId ? 'تعديل قياس' : 'إضافة قياس جديد'}</h2>
               <button onClick={() => setShowForm(false)} className="text-gray-400 hover:text-gray-600">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -104,33 +104,33 @@ const MeasurementView: React.FC = () => {
             <form onSubmit={handleSave} className="p-6 space-y-4">
               <div className="space-y-1">
                 <label className="text-sm font-semibold text-gray-700">اسم الزبون</label>
-                <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900" />
+                <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-indigo-500 text-black font-medium" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="text-sm font-semibold text-gray-700">الطول</label>
-                  <input type="text" value={formData.length} onChange={e => setFormData({...formData, length: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900" />
+                  <input type="text" value={formData.length} onChange={e => setFormData({...formData, length: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-indigo-500 text-black font-medium" />
                 </div>
                 <div className="space-y-1">
                   <label className="text-sm font-semibold text-gray-700">ردن</label>
-                  <input type="text" value={formData.sleeve} onChange={e => setFormData({...formData, sleeve: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900" />
+                  <input type="text" value={formData.sleeve} onChange={e => setFormData({...formData, sleeve: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-indigo-500 text-black font-medium" />
                 </div>
                 <div className="space-y-1">
                   <label className="text-sm font-semibold text-gray-700">كتف</label>
-                  <input type="text" value={formData.shoulder} onChange={e => setFormData({...formData, shoulder: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900" />
+                  <input type="text" value={formData.shoulder} onChange={e => setFormData({...formData, shoulder: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-indigo-500 text-black font-medium" />
                 </div>
                 <div className="space-y-1">
                   <label className="text-sm font-semibold text-gray-700">ياخة</label>
-                  <input type="text" value={formData.collar} onChange={e => setFormData({...formData, collar: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900" />
+                  <input type="text" value={formData.collar} onChange={e => setFormData({...formData, collar: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-indigo-500 text-black font-medium" />
                 </div>
                 <div className="space-y-1">
                   <label className="text-sm font-semibold text-gray-700">عرض</label>
-                  <input type="text" value={formData.width} onChange={e => setFormData({...formData, width: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900" />
+                  <input type="text" value={formData.width} onChange={e => setFormData({...formData, width: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-indigo-500 text-black font-medium" />
                 </div>
               </div>
               <div className="space-y-1">
                 <label className="text-sm font-semibold text-gray-700">تفاصيل التفصال</label>
-                <textarea value={formData.details} onChange={e => setFormData({...formData, details: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-indigo-500 h-24 text-gray-900"></textarea>
+                <textarea value={formData.details} onChange={e => setFormData({...formData, details: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-indigo-500 h-24 text-black font-medium"></textarea>
               </div>
               <button type="submit" className="w-full bg-indigo-600 text-white p-3 rounded-xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all">حفظ البيانات</button>
             </form>
@@ -143,7 +143,7 @@ const MeasurementView: React.FC = () => {
           filtered.map(m => (
             <div key={m.id} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between gap-4 group hover:shadow-md transition-shadow">
               <div className="space-y-2 flex-grow">
-                <h3 className="text-lg font-bold text-gray-800">{m.name}</h3>
+                <h3 className="text-lg font-bold text-black">{m.name}</h3>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-sm">
                   <div className="bg-indigo-50 p-2 rounded-lg text-indigo-700 border border-indigo-100"><span className="font-bold">الطول:</span> {m.length}</div>
                   <div className="bg-indigo-50 p-2 rounded-lg text-indigo-700 border border-indigo-100"><span className="font-bold">ردن:</span> {m.sleeve}</div>
@@ -152,7 +152,7 @@ const MeasurementView: React.FC = () => {
                   <div className="bg-indigo-50 p-2 rounded-lg text-indigo-700 border border-indigo-100"><span className="font-bold">عرض:</span> {m.width}</div>
                 </div>
                 {m.details && (
-                  <div className="mt-2 text-sm text-gray-500 bg-gray-50 p-2 rounded-lg border border-gray-100">
+                  <div className="mt-2 text-sm text-gray-700 bg-gray-50 p-2 rounded-lg border border-gray-100">
                     <span className="font-bold block mb-1">تفاصيل:</span> {m.details}
                   </div>
                 )}

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Debt } from '../types';
-import { storageService } from '../services/storageService';
+import { Debt } from '../types.ts';
+import { storageService } from '../services/storageService.ts';
 
 const DebtView: React.FC = () => {
   const [debts, setDebts] = useState<Debt[]>([]);
@@ -69,7 +69,7 @@ const DebtView: React.FC = () => {
             <input
               type="text"
               placeholder="بحث باسم المدين..."
-              className="w-full pr-10 p-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none transition-all text-gray-900"
+              className="w-full pr-10 p-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none transition-all text-black font-medium"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -94,8 +94,8 @@ const DebtView: React.FC = () => {
       {showForm && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg">
-            <div className="p-6 border-b flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-800">{editingId ? 'تعديل سجل دين' : 'تسجيل دين جديد'}</h2>
+            <div className="p-6 border-b flex justify-between items-center text-black">
+              <h2 className="text-xl font-bold">{editingId ? 'تعديل سجل دين' : 'تسجيل دين جديد'}</h2>
               <button onClick={() => setShowForm(false)} className="text-gray-400 hover:text-gray-600">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -105,15 +105,15 @@ const DebtView: React.FC = () => {
             <form onSubmit={handleSave} className="p-6 space-y-4">
               <div className="space-y-1">
                 <label className="text-sm font-semibold text-gray-700">اسم الشخص</label>
-                <input required type="text" value={formData.customerName} onChange={e => setFormData({...formData, customerName: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-amber-500 text-gray-900" />
+                <input required type="text" value={formData.customerName} onChange={e => setFormData({...formData, customerName: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-amber-500 text-black font-medium" />
               </div>
               <div className="space-y-1">
                 <label className="text-sm font-semibold text-gray-700">المبلغ</label>
-                <input required type="number" value={formData.amount || ''} onChange={e => setFormData({...formData, amount: Number(e.target.value)})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-amber-500 text-gray-900" />
+                <input required type="number" value={formData.amount || ''} onChange={e => setFormData({...formData, amount: Number(e.target.value)})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-amber-500 text-black font-medium" />
               </div>
               <div className="space-y-1">
                 <label className="text-sm font-semibold text-gray-700">ملاحظات إضافية</label>
-                <textarea value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-amber-500 h-24 text-gray-900"></textarea>
+                <textarea value={formData.notes} onChange={e => setFormData({...formData, notes: e.target.value})} className="w-full p-3 border rounded-xl bg-gray-50 outline-none focus:ring-2 focus:ring-amber-500 h-24 text-black font-medium"></textarea>
               </div>
               <button type="submit" className="w-full bg-amber-600 text-white p-3 rounded-xl font-bold shadow-lg shadow-amber-200 hover:bg-amber-700 transition-all">حفظ السجل</button>
             </form>
@@ -126,7 +126,7 @@ const DebtView: React.FC = () => {
           filtered.map(d => (
             <div key={d.id} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex justify-between items-center group hover:shadow-md transition-shadow">
               <div className="space-y-1">
-                <h3 className="text-lg font-bold text-gray-800">{d.customerName}</h3>
+                <h3 className="text-lg font-bold text-black">{d.customerName}</h3>
                 <p className="text-2xl font-black text-amber-600">{d.amount.toLocaleString()} د.ع</p>
                 {d.notes && <p className="text-xs text-gray-400 italic">ملاحظات: {d.notes}</p>}
                 <p className="text-[10px] text-gray-300">آخر تحديث: {new Date(d.updatedAt).toLocaleDateString('ar-EG')}</p>

@@ -1,15 +1,15 @@
 
-import React, { useState, useEffect } from 'react';
-import { ViewType, Measurement, Debt } from './types';
-import MeasurementView from './components/MeasurementView';
-import DebtView from './components/DebtView';
-import Navigation from './components/Navigation';
+import React, { useState } from 'react';
+import { ViewType } from './types.ts';
+import MeasurementView from './components/MeasurementView.tsx';
+import DebtView from './components/DebtView.tsx';
+import Navigation from './components/Navigation.tsx';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewType>('measurements');
 
   return (
-    <div className="min-h-screen pb-24 md:pb-0 md:pr-64">
+    <div className="min-h-screen pb-24 md:pb-0 md:pr-64 text-gray-900">
       {/* Header */}
       <header className="bg-indigo-700 text-white p-4 shadow-lg sticky top-0 z-10">
         <div className="container mx-auto flex justify-between items-center">
